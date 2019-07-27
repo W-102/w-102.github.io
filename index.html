@@ -160,9 +160,121 @@
         <hr>
 <h2 id="title-关于JavaWeb开发中头像裁剪并上传到服务器中问题（实训时所遇到的问题）"><a href="#title-关于JavaWeb开发中头像裁剪并上传到服务器中问题（实训时所遇到的问题）" class="headerlink" title="title:关于JavaWeb开发中头像裁剪并上传到服务器中问题（实训时所遇到的问题）"></a>title:关于JavaWeb开发中头像裁剪并上传到服务器中问题（实训时所遇到的问题）</h2><h3 id="第一："><a href="#第一：" class="headerlink" title="第一："></a>第一：</h3><p>使用头像裁剪上传模板cropper.js的下载地址为：<a href="http://www.jianshu.com/p/6c269f0b48c0" target="_blank" rel="noopener">http://www.jianshu.com/p/6c269f0b48c0</a></p>
 <hr>
-<h3 id="第二："><a href="#第二：" class="headerlink" title="第二："></a>第二：</h3><p>对前端代码的修改内容为：<br><img src="https://i.imgur.com/GkEeTHO.png" alt><br><img src="https://i.imgur.com/xpUfGUk.png" alt></p>
-<hr>
-<p>###第三：###<br>后台代码的内容为：</p>
+<h3 id="第二："><a href="#第二：" class="headerlink" title="第二："></a>第二：</h3><p>对前端代码的修改内容为：</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%
+String path = request.getContextPath();
+String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;
+%&gt;
+&lt;base href=&quot;&lt;%=basePath%&gt;&quot;&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt; 
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;头像上传&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;imageBox&quot;&gt;
+    &lt;div class=&quot;thumbBox&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;spinner&quot; style=&quot;display: none&quot;&gt;Loading...&lt;/div&gt;
+  &lt;/div&gt;
+ &lt;form action=&quot;upload.action&quot; method=&quot;post&quot;&gt;
+  &lt;div class=&quot;action&quot;&gt; 
+    &lt;div class=&quot;new-contentarea tc&quot;&gt; 
+        &lt;a href=&quot;javascript:void(0)&quot; class=&quot;upload-img&quot;&gt;
+            &lt;label for=&quot;upload-file&quot;&gt;上传图像&lt;/label&gt;
+      &lt;/a&gt;
+      &lt;input type=&quot;file&quot; class=&quot;&quot; id=&quot;upload-file&quot; /&gt;
+      &lt;input type=&quot;text&quot; name=&quot;filename&quot; id=&quot;filename&quot;&gt;
+      &lt;textarea rows=&quot;100&quot; cols=&quot;400&quot; name=&quot;base64_src&quot; id=&quot;base64_src&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btnCrop&quot;  class=&quot;Btnsty_peyton&quot; value=&quot;裁切&quot;&gt; 
+    &lt;input type=&quot;button&quot; id=&quot;btnZoomIn&quot; class=&quot;Btnsty_peyton&quot; value=&quot;+&quot;  &gt;
+    &lt;input type=&quot;button&quot; id=&quot;btnZoomOut&quot; class=&quot;Btnsty_peyton&quot; value=&quot;-&quot; &gt;
+    &lt;button id=&quot;upload-btn&quot; type=&quot;submit&quot;&gt;上传&lt;/button&gt;
+    &lt;button id=&quot;showFile&quot; type=&quot;button&quot;&gt;显示路径&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;/form&gt;
+  &lt;div class=&quot;cropped&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/cropbox.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(&quot;#showFile&quot;).click(function() {
+    console.log($(&quot;input[name=&apos;upload-file&apos;]&quot;).val())
+});
+/* $(&quot;#upload-btn&quot;).click(function() {
+    var formData = new FormData();
+    formData.append(&quot;upload-file&quot;, $(&quot;#upload-file&quot;)[0].files[0]);
+    formData.append(&quot;base64_src&quot;, $(&quot;#base64_src&quot;).text());
+     $.post(&quot;upload.action&quot;, formData, function(data) {
+        alert(&quot;success&quot;);
+    }) 
+    $.ajax({
+        url: &quot;upload.action&quot;,
+        type: &apos;POST&apos;,
+        cache: false,
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function () {
+            alert(&quot;文件上传成功！&quot;)
+        },
+        error: function () {
+
+        }
+    });
+}); */
+$(window).load(function() {
+    //上传头像事件
+    var options =
+    {
+        thumbBox: &apos;.thumbBox&apos;,
+        spinner: &apos;.spinner&apos;,
+        imgSrc: &apos;img/5.jpg&apos;
+    }
+    var cropper = $(&apos;.imageBox&apos;).cropbox(options);
+    $(&apos;#upload-file&apos;).on(&apos;change&apos;, function(){
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            options.imgSrc = e.target.result;
+            cropper = $(&apos;.imageBox&apos;).cropbox(options);
+        }
+        reader.readAsDataURL(this.files[0]);
+        this.files = [];
+    })
+    //图片的裁剪
+    $(&apos;#btnCrop&apos;).on(&apos;click&apos;, function(){
+        var img = cropper.getDataURL();
+        console.log(img)
+        $(&apos;.cropped&apos;).html(&apos;&apos;);
+        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;&quot; &gt;&lt;p&gt;64px*64px&lt;/p&gt;&apos;);
+        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;&quot;&gt;&lt;p&gt;128px*128px&lt;/p&gt;&apos;);
+        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;&quot;&gt;&lt;p&gt;180px*180px&lt;/p&gt;&apos;);
+        $(&quot;#base64_src&quot;).text(img.substring(22));
+        $(&quot;#filename&quot;).val($(&quot;#upload-file&quot;).val());
+    })
+    //图片放大
+    $(&apos;#btnZoomIn&apos;).on(&apos;click&apos;, function(){
+        cropper.zoomIn();
+    })
+    //图片缩小
+    $(&apos;#btnZoomOut&apos;).on(&apos;click&apos;, function(){
+        cropper.zoomOut();
+    })
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><hr>
+<h3 id="第三："><a href="#第三：" class="headerlink" title="第三："></a>第三：</h3><p>后台代码的内容为：</p>
 <pre><code>    package com.wy;
 
     import java.io.File;
