@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>foolwys的博客</title>
+  <title>Archives: 2019/10 | foolwys的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="foolwys的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2019/10/index.html">
 <meta property="og:site_name" content="foolwys的博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -152,485 +152,41 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CLion-undefined reference to" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="关于CLion中出现“undefined-reference-to……”的解决方法（CLion的版本为2018-3）"><a href="#关于CLion中出现“undefined-reference-to……”的解决方法（CLion的版本为2018-3）" class="headerlink" title="关于CLion中出现“undefined reference to……”的解决方法（CLion的版本为2018.3）"></a>关于CLion中出现“undefined reference to……”的解决方法（CLion的版本为2018.3）</h2><p>###首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种：</p>
-<p>###第一种：<br>    在MakeList.txt文件最后添加：<br>        find_package(Threads REQUIRED)<br>        target_link_libraries(thread Threads::Threads)</p>
-<pre><code>target_link_libraries中的第一个参数代表执行文件的名字，这里我填thread，是因为在前边有一句：
-    add_executable(thread ${SOURCE_FILES})</code></pre><p>点击阅读：<a href="https://blog.csdn.net/qq_32126633/article/details/80577668" target="_blank" rel="noopener">原文博客</a></p>
-<p>###第二种：<a href="https://stackoverflow.com/questions/42424484/clion-undefined-reference-to-function" target="_blank" rel="noopener">原文链接</a></p>
-<p>###我的解决方法：<br>    在Makelist.txt文档中将对应的文件名称放到一个add_executable()中：如下:<br>        add_executable(10-2stock00 10-2stock00.cpp 10-1stock00.h)</p>
-<pre><code>最初出现错误的方法：
-    add_executable(10-1stock00 10-1stock00.h)
-    add_executable(10-2stock00 10-2stock00.cpp 10-1stock00.h)
-    add_executable(10-3usestock0 10-3usestock0.cpp)</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
+    
       
       
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/31/CLion-undefined reference to/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-headImgUpload" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+        <div class="archives">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/headImgUpload/">关于JavaWeb开发中头像裁剪并上传到服务器中问题（实训时所遇到的问题）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/27/headImgUpload/" class="archive-article-date">
-  	<time datetime="2019-07-27T02:18:23.763Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/10/31/CLion-undefined reference to/" class="archive-article-date">
+  	<time datetime="2019-10-31T09:45:17.812Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第一："><a href="#第一：" class="headerlink" title="第一："></a>第一：</h3><p>使用头像裁剪上传模板cropper.js的下载地址为：<a href="http://www.jianshu.com/p/6c269f0b48c0" target="_blank" rel="noopener">http://www.jianshu.com/p/6c269f0b48c0</a></p>
-<hr>
-<h3 id="第二："><a href="#第二：" class="headerlink" title="第二："></a>第二：</h3><p>对前端代码的修改内容为：</p>
-<pre><code>&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
-&lt;%
-String path = request.getContextPath();
-String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;
-%&gt;
-&lt;base href=&quot;&lt;%=basePath%&gt;&quot;&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;zh&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt; 
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-&lt;title&gt;头像上传&lt;/title&gt;
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot; type=&quot;text/css&quot; /&gt;
-
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;imageBox&quot;&gt;
-    &lt;div class=&quot;thumbBox&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;spinner&quot; style=&quot;display: none&quot;&gt;Loading...&lt;/div&gt;
-  &lt;/div&gt;
- &lt;form action=&quot;upload.action&quot; method=&quot;post&quot;&gt;
-  &lt;div class=&quot;action&quot;&gt; 
-    &lt;div class=&quot;new-contentarea tc&quot;&gt; 
-        &lt;a href=&quot;javascript:void(0)&quot; class=&quot;upload-img&quot;&gt;
-            &lt;label for=&quot;upload-file&quot;&gt;上传图像&lt;/label&gt;
-      &lt;/a&gt;
-      &lt;input type=&quot;file&quot; class=&quot;&quot; id=&quot;upload-file&quot; /&gt;
-      &lt;input type=&quot;text&quot; name=&quot;filename&quot; id=&quot;filename&quot;&gt;
-      &lt;textarea rows=&quot;100&quot; cols=&quot;400&quot; name=&quot;base64_src&quot; id=&quot;base64_src&quot;&gt;&lt;/textarea&gt;
-    &lt;/div&gt;
-    &lt;input type=&quot;button&quot; id=&quot;btnCrop&quot;  class=&quot;Btnsty_peyton&quot; value=&quot;裁切&quot;&gt; 
-    &lt;input type=&quot;button&quot; id=&quot;btnZoomIn&quot; class=&quot;Btnsty_peyton&quot; value=&quot;+&quot;  &gt;
-    &lt;input type=&quot;button&quot; id=&quot;btnZoomOut&quot; class=&quot;Btnsty_peyton&quot; value=&quot;-&quot; &gt;
-    &lt;button id=&quot;upload-btn&quot; type=&quot;submit&quot;&gt;上传&lt;/button&gt;
-    &lt;button id=&quot;showFile&quot; type=&quot;button&quot;&gt;显示路径&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;/form&gt;
-  &lt;div class=&quot;cropped&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;js/cropbox.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-$(&quot;#showFile&quot;).click(function() {
-    console.log($(&quot;input[name=&apos;upload-file&apos;]&quot;).val())
-});
-/* $(&quot;#upload-btn&quot;).click(function() {
-    var formData = new FormData();
-    formData.append(&quot;upload-file&quot;, $(&quot;#upload-file&quot;)[0].files[0]);
-    formData.append(&quot;base64_src&quot;, $(&quot;#base64_src&quot;).text());
-     $.post(&quot;upload.action&quot;, formData, function(data) {
-        alert(&quot;success&quot;);
-    }) 
-    $.ajax({
-        url: &quot;upload.action&quot;,
-        type: &apos;POST&apos;,
-        cache: false,
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function () {
-            alert(&quot;文件上传成功！&quot;)
-        },
-        error: function () {
-
-        }
-    });
-}); */
-$(window).load(function() {
-    //上传头像事件
-    var options =
-    {
-        thumbBox: &apos;.thumbBox&apos;,
-        spinner: &apos;.spinner&apos;,
-        imgSrc: &apos;img/5.jpg&apos;
-    }
-    var cropper = $(&apos;.imageBox&apos;).cropbox(options);
-    $(&apos;#upload-file&apos;).on(&apos;change&apos;, function(){
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            options.imgSrc = e.target.result;
-            cropper = $(&apos;.imageBox&apos;).cropbox(options);
-        }
-        reader.readAsDataURL(this.files[0]);
-        this.files = [];
-    })
-    //图片的裁剪
-    $(&apos;#btnCrop&apos;).on(&apos;click&apos;, function(){
-        var img = cropper.getDataURL();
-        console.log(img)
-        $(&apos;.cropped&apos;).html(&apos;&apos;);
-        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;&quot; &gt;&lt;p&gt;64px*64px&lt;/p&gt;&apos;);
-        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;&quot;&gt;&lt;p&gt;128px*128px&lt;/p&gt;&apos;);
-        $(&apos;.cropped&apos;).append(&apos;&lt;img src=&quot;&apos;+img+&apos;&quot; align=&quot;absmiddle&quot; style=&quot;width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;&quot;&gt;&lt;p&gt;180px*180px&lt;/p&gt;&apos;);
-        $(&quot;#base64_src&quot;).text(img.substring(22));
-        $(&quot;#filename&quot;).val($(&quot;#upload-file&quot;).val());
-    })
-    //图片放大
-    $(&apos;#btnZoomIn&apos;).on(&apos;click&apos;, function(){
-        cropper.zoomIn();
-    })
-    //图片缩小
-    $(&apos;#btnZoomOut&apos;).on(&apos;click&apos;, function(){
-        cropper.zoomOut();
-    })
-});
-&lt;/script&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</code></pre><hr>
-<h3 id="第三："><a href="#第三：" class="headerlink" title="第三："></a>第三：</h3><p>后台代码的内容为：</p>
-<pre><code>    package com.wy;
-
-    import java.io.File;
-    import java.io.FileOutputStream;
-    import java.io.IOException;
-    import java.io.OutputStream;
-    import java.io.PrintWriter;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
-    import java.util.Iterator;
-    import java.util.List;
-
-    import javax.jms.Session;
-    import javax.servlet.ServletException;
-    import javax.servlet.annotation.WebServlet;
-    import javax.servlet.http.HttpServlet;
-    import javax.servlet.http.HttpServletRequest;
-    import javax.servlet.http.HttpServletResponse;
-    import javax.servlet.http.HttpSession;
-
-    import org.apache.commons.fileupload.FileItem;
-    import org.apache.commons.fileupload.FileItemFactory;
-    import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-    import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-    import Decoder.BASE64Decoder;
-
-    import org.apache.commons.fileupload.servlet.ServletFileUpload;
-    @WebServlet(&quot;/upload.action&quot;)
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
-    }
-
-
-    public class HeadImgServlet extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse  response) throws ServletException, IOException {
-    request.setCharacterEncoding(&quot;UTF-8&quot;);
-    response.setCharacterEncoding(&quot;utf-8&quot;);
-    response.setContentType(&quot;text/html;charset=UTF-8&quot;);
-
-        try {
-            //得到base64编码
-            String base64_src = request.getParameter(&quot;base64_src&quot;);
-            //得到文件名
-            String filename = request.getParameter(&quot;filename&quot;);
-            System.out.println(base64_src);
-            System.out.println(filename);
-            BASE64Decoder decoder = new BASE64Decoder();
-            byte[] temp = decoder.decodeBuffer(base64_src);
-
-            //生成不同的id
-            SnowFlakeUtils snowFlake =  new SnowFlakeUtils(0, 0);
-            Long id = snowFlake.nextId();
-            //存储路径
-            String filePath = request.getSession().getServletContext().getRealPath(&quot;image&quot;);
-            filename = filename.substring(filename.lastIndexOf(&quot;\\&quot;));
-            //对图片进行重命名
-            String newFileName = filePath+&quot;/&quot;+id+&quot;.&quot;+filename.split(&quot;\\.&quot;)[1];
-            //保存头像
-            OutputStream oStream =new FileOutputStream(newFileName);
-            oStream.write(temp);
-            oStream.flush();
-            oStream.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            // TODO: handle exception
-        }
-
-}</code></pre><hr>
-<h2 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h2><p><strong>此工程用到了文件的上传的两个jar包和Base64码所需一个jar包：</strong></p>
-<h3 id="commons-fileupload-1-3-1-jar"><a href="#commons-fileupload-1-3-1-jar" class="headerlink" title="commons-fileupload-1.3.1.jar"></a>commons-fileupload-1.3.1.jar</h3><h3 id="commons-io-2-4-jar"><a href="#commons-io-2-4-jar" class="headerlink" title="commons-io-2.4.jar"></a>commons-io-2.4.jar</h3><h3 id="sun-misc-BASE64Decoder-jar"><a href="#sun-misc-BASE64Decoder-jar" class="headerlink" title="sun.misc.BASE64Decoder.jar"></a>sun.misc.BASE64Decoder.jar</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/27/headImgUpload/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-Jetbrains" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/11/Jetbrains/">关于Jetbrains(2018版)系列软件的破解方法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/11/Jetbrains/" class="archive-article-date">
-  	<time datetime="2019-07-11T06:34:08.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h3><p>先在官网上下载所需的软件（注意：下载的版本要是2018版）链接为：<a href="http://www.jetbrains.com/products.html" target="_blank" rel="noopener">http://www.jetbrains.com/products.html</a></p>
-<hr>
-<h3 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h3><p>点击下载的软件进行安装，一步一步进行下去就好，最后不要运行该软件。</p>
-<hr>
-<h3 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h3><p>在安装的路径中，找到bin目录，将JetbrainsIdesCrack-4.2.jar粘贴到bin目录中<br><a href="https://www.w3h5.com/post/198.html" target="_blank" rel="noopener">下载链接</a></p>
-<hr>
-<h3 id="第四步："><a href="#第四步：" class="headerlink" title="第四步："></a>第四步：</h3><p>在bin目录中找到…64.exe.vmoptions的文件，将其打开，在最后加上</p>
-<p>-javaagent:D:\Program Files\JetBrains\PyCharm 2018.3.6\bin\JetbrainsIdesCrack-4.2.jar（JetbrainsIdesCrack-4.2.jar的路径）</p>
-<hr>
-<h3 id="第五步："><a href="#第五步：" class="headerlink" title="第五步："></a>第五步：</h3><p>打开所安装的目录，在注册的界面输入：</p>
-<pre><code>ThisCrackLicenseId-{ 
-“licenseId”:”ThisCrackLicenseId”, 
-“licenseeName”:”idea”, 
-“assigneeName”:”“, 
-“assigneeEmail”:”idea@163.com”, 
-“licenseRestriction”:”For This Crack, Only Test! Please support genuine!!!”, 
-“checkConcurrentUse”:false, 
-“products”:[ 
-{“code”:”II”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”DM”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”AC”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”RS0”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”WS”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”DPN”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”RC”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”PS”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”DC”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”RM”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”CL”,”paidUpTo”:”2099-12-31”}, 
-{“code”:”PC”,”paidUpTo”:”2099-12-31”} 
-], 
-“hash”:”2911276/0”, 
-“gracePeriodDays”:7, 
-&quot;autoProlongated&quot;:false}</code></pre><p>直接进入就完成了。祝您使用愉快！！！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/11/Jetbrains/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-05T10:37:53.598Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/05/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -652,9 +208,9 @@ $(window).load(function() {
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
