@@ -172,20 +172,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种：###</p>
-<hr>
-<p>###第一种：###</p>
-<pre><code>在MakeList.txt文件最后添加：
+        <h3 id="首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种："><a href="#首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种：" class="headerlink" title="首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种："></a>首先我是在网上搜了很多的额解决方法，然而，在我这里都没有起到作用，查到的方法有以下几种：</h3><hr>
+<h3 id="第一种："><a href="#第一种：" class="headerlink" title="第一种："></a>第一种：</h3><pre><code>在MakeList.txt文件最后添加：
     find_package(Threads REQUIRED)
     target_link_libraries(thread Threads::Threads)
 target_link_libraries中的第一个参数代表执行文件的名字，这里我填thread，是因为在前边有一句：
     add_executable(thread ${SOURCE_FILES})</code></pre><p>点击阅读：<a href="https://blog.csdn.net/qq_32126633/article/details/80577668" target="_blank" rel="noopener">原文博客</a></p>
 <hr>
-<p>###第二种：###</p>
-<p>点击阅读<a href="https://stackoverflow.com/questions/42424484/clion-undefined-reference-to-function" target="_blank" rel="noopener">原文链接</a></p>
+<h3 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h3><p>点击阅读<a href="https://stackoverflow.com/questions/42424484/clion-undefined-reference-to-function" target="_blank" rel="noopener">原文链接</a></p>
 <hr>
-<p>##我的解决方法：##</p>
-<pre><code>在Makelist.txt文档中将对应的文件名称放到一个add_executable()中：如下:        
+<h2 id="我的解决方法："><a href="#我的解决方法：" class="headerlink" title="我的解决方法："></a>我的解决方法：</h2><pre><code>在Makelist.txt文档中将对应的文件名称放到一个add_executable()中：如下:        
     add_executable(10-2stock00 10-2stock00.cpp 10-1stock00.h)    
 最初出现错误的方法：
     add_executable(10-1stock00 10-1stock00.h)
